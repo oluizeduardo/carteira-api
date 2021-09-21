@@ -11,15 +11,6 @@ public class TransacaoDTO {
 	private BigDecimal preco;
 	private int quantidade;
 	private TipoTransacao tipo;
-
-	
-	public TransacaoDTO(Transacao transacao) {
-		this.ticker = transacao.getTicker();
-		this.preco = transacao.getPreco();
-		this.quantidade = transacao.getQuantidade();
-		this.tipo = transacao.getTipo();		
-	}
-	
 	
 	
 	public String getTicker() {

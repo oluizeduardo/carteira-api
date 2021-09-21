@@ -21,12 +21,14 @@ public class TransacaoController {
 
 	private List<Transacao> transacoes = new ArrayList<Transacao>();
 	
+	ModelMapper modelMapper = new ModelMapper();
+	
+	
 	@GetMapping
 	public List<TransacaoDTO> listar() {
 		
 //		return transacoes.stream().map(TransacaoDTO::new).collect(Collectors.toList());
-		
-		ModelMapper modelMapper = new ModelMapper();
+
 		return transacoes
 				.stream()
 				.map(t -> modelMapper.map(t, TransacaoDTO.class))
@@ -35,12 +37,8 @@ public class TransacaoController {
 	
 	@PostMapping
 	public void cadastrar(@RequestBody TransacaoFormDTO dto) {
-		Transacao transacao = new Transacao(
-				dto.getTicker(),
-				dto.getPreco(),
-				dto.getQuantidade(),
-				dto.getData(),
-				dto.getTipo());
+		
+		Transacao transacao = modelMapper.map(dto, Transacao.class);
 		
 		transacoes.add(transacao);
 	}
