@@ -37,7 +37,7 @@ public class TransacaoController {
 	
 	@PostMapping
 	public void cadastrar(@RequestBody TransacaoFormDTO dto) {
-		
+
 		Transacao transacao = modelMapper.map(dto, Transacao.class);
 		
 		transacoes.add(transacao);
