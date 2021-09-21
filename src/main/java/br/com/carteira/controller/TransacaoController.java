@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -36,7 +38,7 @@ public class TransacaoController {
 	}
 	
 	@PostMapping
-	public void cadastrar(@RequestBody TransacaoFormDTO dto) {
+	public void cadastrar(@RequestBody @Valid TransacaoFormDTO dto) {
 
 		Transacao transacao = modelMapper.map(dto, Transacao.class);
 		
