@@ -11,6 +11,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+
 import br.com.carteira.model.TipoTransacao;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -42,5 +44,8 @@ public class TransacaoFormDTO {
 	
 	@PastOrPresent(message = "The date must be present or past.")
 	private LocalDate data;
+	
+	@JsonAlias("usuario_id")
+	private Integer usuarioId;
 
 }
