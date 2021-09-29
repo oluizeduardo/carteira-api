@@ -13,6 +13,7 @@ REST API simulating a digital wallet.
 * [ModelMapper](http://modelmapper.org/)
 * [Project Lombok](https://projectlombok.org/)
 * Java 11
+* JPA/[Hibernate](https://hibernate.org/orm/)
 
 # API Test
 * [Postman](https://www.postman.com/)
