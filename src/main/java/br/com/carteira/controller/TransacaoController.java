@@ -1,11 +1,12 @@
 package br.com.carteira.controller;
 
-import java.util.List;
-
 import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,9 +27,9 @@ public class TransacaoController {
 	
 	
 	@GetMapping
-	public List<TransacaoDTO> listar() 
+	public Page<TransacaoDTO> listar(@PageableDefault(size = 5) Pageable paginacao) 
 	{
-		return service.listar();
+		return service.listar(paginacao);
 	}
 	
 	@PostMapping
