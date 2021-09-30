@@ -14,6 +14,7 @@ REST API simulating a digital wallet.
 * [Project Lombok](https://projectlombok.org/)
 * Java 11
 * JPA/[Hibernate](https://hibernate.org/orm/)
+* [Flyway](https://flywaydb.org/documentation/)
 
 # API Test
 * [Postman](https://www.postman.com/)
