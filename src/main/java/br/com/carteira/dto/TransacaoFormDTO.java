@@ -9,6 +9,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
@@ -30,6 +31,7 @@ public class TransacaoFormDTO {
 	@NotNull
 	@NotEmpty
 	@Size(min=5, max = 6, message = "Ticker should be between 5 and 6 chars.")
+	@Pattern(regexp = "[a-zA-Z]{4}[0-9][0-9]?")
 	private String ticker;
 	
 	@DecimalMin(value = "0.01")
