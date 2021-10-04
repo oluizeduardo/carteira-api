@@ -11,7 +11,7 @@ import lombok.Setter;
 public class UsuarioFormDTO {
 	
 	@NotBlank(message = "Name is required!")
-	@Size(min=2, max = 20, message = "Name should be between 2 and 20 chars.")
+	@Size(min=2, max = 40, message = "Name should be between 2 and 20 chars.")
 	private String nome;
 	
 	@NotBlank(message = "Login is required!")

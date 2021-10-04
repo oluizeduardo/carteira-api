@@ -1,7 +1,6 @@
 package br.com.carteira.dto;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 import br.com.carteira.model.TipoTransacao;
 import lombok.AllArgsConstructor;

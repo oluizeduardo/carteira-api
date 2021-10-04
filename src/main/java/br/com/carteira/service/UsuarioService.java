@@ -27,6 +27,7 @@ public class UsuarioService {
 	public void cadastrar(UsuarioFormDTO dto) 
 	{
 		Usuario usuario = modelMapper.map(dto, Usuario.class);
+		usuario.setSenha();
 		usuarioRepository.save(usuario);
 	}
 
