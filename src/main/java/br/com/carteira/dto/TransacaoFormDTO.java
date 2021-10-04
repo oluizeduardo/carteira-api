@@ -31,7 +31,7 @@ public class TransacaoFormDTO {
 	@NotNull
 	@NotEmpty
 	@Size(min=5, max = 6, message = "Ticker should be between 5 and 6 chars.")
-	@Pattern(regexp = "[a-zA-Z]{4}[0-9][0-9]?")
+	@Pattern(regexp = "[A-Z]{4}[0-9][0-9]?")
 	private String ticker;
 	
 	@DecimalMin(value = "0.01")
