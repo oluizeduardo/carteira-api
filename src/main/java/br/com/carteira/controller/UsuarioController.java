@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.carteira.dto.TransacaoDTO;
 import br.com.carteira.dto.UsuarioDTO;
 import br.com.carteira.dto.UsuarioFormDTO;
 import br.com.carteira.service.UsuarioService;

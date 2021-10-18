@@ -10,11 +10,11 @@ import lombok.Setter;
 @Setter
 public class UsuarioFormDTO {
 	
-	@NotBlank(message = "Name is required!")
-	@Size(min=2, max = 40, message = "Name should be between 2 and 20 chars.")
+	@NotBlank
+	@Size(min=2, max = 40)
 	private String nome;
 	
-	@NotBlank(message = "Login is required!")
-	@Size(min=2, max = 20, message = "Login should be between 2 and 20 chars.")
+	@NotBlank
+	@Size(min=2, max = 20)
 	private String login;
 }
