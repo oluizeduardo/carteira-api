@@ -16,13 +16,19 @@ REST API simulating a digital wallet.
 * Java 11
 * JPA/[Hibernate](https://hibernate.org/orm/)
 * [Flyway](https://flywaydb.org/documentation/)
-* [JUnit](https://junit.org/junit5/docs/current/user-guide/)
-* [AssertJ](https://assertj.github.io/doc/)
+* Automated tests
+  - [JUnit](https://junit.org/junit5/docs/current/user-guide/)
+  - [MockMvc](https://www.baeldung.com/integration-testing-in-spring#3-mocking-web-context-beans/)
+  - [AssertJ](https://assertj.github.io/doc/)
 * Datasources
     - [MySql](https://www.mysql.com/)
     - [H2 Database Engine](https://www.h2database.com/html/cheatSheet.html)
 
 # API Test
 * [Postman](https://www.postman.com/)
+
+# Documentation tool
+* [Swagger](https://www.baeldung.com/swagger-2-documentation-for-spring-rest-api)
+> **_NOTE:_**  As soon as you run the application, check the documentation at http://localhost:8080/swagger-ui.html.
 
 
