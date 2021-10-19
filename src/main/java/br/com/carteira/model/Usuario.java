@@ -28,8 +28,15 @@ public class Usuario {
 	private String login;
 	private String senha;
 	
+	public Usuario(String nome, String login) {
+		this.nome = nome;
+		this.login = login;
+		setSenha();
+	}
+	
 	public void setSenha()
 	{
 		this.senha = new String("@!"+nome.substring(0, 3).toUpperCase().concat(login.substring(0, 3)));
 	}
+	
 }
