@@ -2,6 +2,7 @@ package br.com.carteira.service;
 
 import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import br.com.carteira.dto.AtualizacaoTransacaoFormDTO;
 import br.com.carteira.dto.TransacaoDTO;
+import br.com.carteira.dto.TransacaoDetalhadaDTO;
 import br.com.carteira.dto.TransacaoFormDTO;
 import br.com.carteira.model.Transacao;
 import br.com.carteira.model.Usuario;
@@ -52,6 +55,34 @@ public class TransacaoService {
 		} catch (EntityNotFoundException ex) {
 			throw new IllegalArgumentException("Usuário Inexistente!");
 		}
+	}
+
+	
+	@Transactional
+	public TransacaoDTO atualizar(@Valid AtualizacaoTransacaoFormDTO dto) 
+	{
+		Transacao transacao = transacaoRepository.getById(dto.getId());		
+		transacao.atualizarInformacoes(dto.getTicker(), dto.getData(), dto.getPreco(), dto.getQuantidade(), dto.getTipo());
+		// Nesse momento a JPA percebe que uma entidade foi carregada do banco de dados
+		// e teve seus dados modificados. A atualização é feita de forma automática pelo JPA.
+		
+		// Mapeia o retorno para um TransacaoDTO.
+		return modelMapper.map(transacao, TransacaoDTO.class);
+	}
+
+	
+	@Transactional
+	public void remover(Integer id) 
+	{
+		transacaoRepository.deleteById(id);
+	}
+
+	public TransacaoDetalhadaDTO detalhar(Integer id) 
+	{
+		Transacao transacao = transacaoRepository.findById(id).orElseThrow(() -> new EntityNotFoundException());
+		
+		// Mapeia o retorno para um TransacaoDTO.
+		return modelMapper.map(transacao, TransacaoDetalhadaDTO.class);
 	}
 
 }
