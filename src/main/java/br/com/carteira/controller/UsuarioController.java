@@ -19,9 +19,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 import br.com.carteira.dto.UsuarioDTO;
 import br.com.carteira.dto.UsuarioFormDTO;
 import br.com.carteira.service.UsuarioService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/usuarios")
+
+//Documentação Swagger.
+@Api(tags = "Usuario")
 public class UsuarioController {
 	
 	@Autowired
@@ -29,6 +34,7 @@ public class UsuarioController {
 	
 	
 	@GetMapping
+	@ApiOperation("Listar usuários")
 	public Page<UsuarioDTO> listar(@PageableDefault(size = 5) Pageable paginacao) 
 	{
 		return service.listar(paginacao);
@@ -36,6 +42,7 @@ public class UsuarioController {
 	
 	
 	@PostMapping
+	@ApiOperation("Cadastrar novo usuário")
 	public ResponseEntity<UsuarioDTO> cadastrar(@RequestBody @Valid UsuarioFormDTO dto,
 			UriComponentsBuilder uriBuilder) 
 	{
