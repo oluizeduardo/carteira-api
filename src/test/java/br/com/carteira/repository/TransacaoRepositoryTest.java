@@ -79,8 +79,8 @@ class TransacaoRepositoryTest {
 				ItemCarteiraDTO::getQuantidade, 
 				ItemCarteiraDTO::getPercentual)
 		.containsExactlyInAnyOrder(
-				Assertions.tuple("XPTO1", 20l, 0.666667),
-				Assertions.tuple("XPTO5", 10l, 0.333333)
+				Assertions.tuple("XPTO1", 0l, new BigDecimal("0.00")),
+				Assertions.tuple("XPTO5", 10l, new BigDecimal("100.00"))
 				);
 
 	}

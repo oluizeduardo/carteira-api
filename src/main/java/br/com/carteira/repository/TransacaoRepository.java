@@ -11,10 +11,13 @@ import br.com.carteira.model.Transacao;
 public interface TransacaoRepository extends JpaRepository<Transacao, Integer> {
 
 	@Query("SELECT new br.com.carteira.dto.ItemCarteiraDTO("
+			// ticker
 			+ "t.ticker, "
-			+ "sum(t.quantidade), "
-			+ "sum(t.quantidade) * 1.0 / (SELECT sum(t2.quantidade) FROM Transacao t2) *1.0) "
-			+ "from Transacao t "
+			// quantidade de cada item comprado.
+			+ "SUM(CASE WHEN(t.tipo = 'COMPRA') THEN t.quantidade ELSE (t.quantidade * -1) END), "
+			// quantidade total
+			+ "(SELECT SUM(CASE WHEN(t2.tipo = 'COMPRA') THEN t2.quantidade ELSE (t2.quantidade * -1) END) FROM Transacao t2)) "
+			+ "FROM Transacao t "
 			+ "GROUP BY t.ticker")
 	List<ItemCarteiraDTO> relatorioCarteiraDeInvestimentos();
 	

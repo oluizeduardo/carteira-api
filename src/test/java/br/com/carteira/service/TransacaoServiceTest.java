@@ -21,6 +21,7 @@ import br.com.carteira.model.TipoTransacao;
 import br.com.carteira.repository.TransacaoRepository;
 import br.com.carteira.repository.UsuarioRepository;
 
+//Carrega as funções do mockito antes de inicializar o JUnit.
 @ExtendWith(MockitoExtension.class)
 class TransacaoServiceTest {
 
@@ -34,40 +35,40 @@ class TransacaoServiceTest {
 	private TransacaoService service;
 	
 	
-	@Test
-	void deveriaCadastrarUmaTransacao() {
-		
-		TransacaoFormDTO formDTO = new TransacaoFormDTO(
+	private TransacaoFormDTO criaTransacaoFormDTO() 
+	{
+		return new TransacaoFormDTO(
 				"ITSA4", 
 				new BigDecimal("10.45"), 
 				10, 
 				TipoTransacao.COMPRA, 
 				LocalDate.now(),
 				1);
+	}
+	
+	
+	@Test
+	void deveriaCadastrarUmaTransacao() 
+	{
 		
-		
+		TransacaoFormDTO formDTO = criaTransacaoFormDTO();
 		TransacaoDTO dto = service.cadastrar(formDTO);
 		
-//		Mockito.verify(transacaoRepository.save(Mockito.any()));
+		// Checa se o método 'save' foi chamado.
+		Mockito.verify(transacaoRepository).save(Mockito.any());
 		
 		assertEquals(formDTO.getTicker(), dto.getTicker());
 		assertEquals(formDTO.getPreco(), dto.getPreco());
 		assertEquals(formDTO.getQuantidade(), dto.getQuantidade());
 		assertEquals(formDTO.getTipo(), dto.getTipo());		
 	}
-	
+
 	
 	@Test
-	void naoDeveriaCadastrarUmaTransacaoComUsuarioInexistente() {
+	void naoDeveriaCadastrarUmaTransacaoComUsuarioInexistente() 
+	{
 		
-		TransacaoFormDTO formDTO = new TransacaoFormDTO(
-				"ITSA4", 
-				new BigDecimal("10.45"), 
-				10, 
-				TipoTransacao.COMPRA, 
-				LocalDate.now(),
-				1);
-		
+		TransacaoFormDTO formDTO = criaTransacaoFormDTO();	
 		
 		Mockito.when(usuarioRepository
 				.getById(formDTO.getUsuarioId()))

@@ -46,7 +46,7 @@ public class TransacaoService {
 			transacao.setId(null);
 			transacao.setUsuario(usuario);
 			
-			//transacaoRepository.save(transacao);
+			transacaoRepository.save(transacao);
 			
 			return modelMapper.map(transacao, TransacaoDTO.class);
 		} catch (EntityNotFoundException ex) {
