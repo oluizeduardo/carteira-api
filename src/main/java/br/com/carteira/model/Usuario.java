@@ -38,5 +38,13 @@ public class Usuario {
 	{
 		this.senha = new String("@!"+nome.substring(0, 3).toUpperCase().concat(login.substring(0, 3)));
 	}
+
+	public void atualizarInformacoes(String nome, String login)
+	{
+		this.nome = nome;
+		this.login = login;
+	}
+
+	
 	
 }

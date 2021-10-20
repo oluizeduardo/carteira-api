@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.carteira.dto.ItemCarteiraDTO;
 import br.com.carteira.service.RelatorioService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/relatorios")
+
 //Documentação Swagger.
 @Api(tags = "Relatórios")
 public class RelatoriosController {
@@ -21,6 +23,7 @@ public class RelatoriosController {
 	private RelatorioService service;
 	
 	@GetMapping("/carteira")
+	@ApiOperation("Relatório da carteira de investimentos")
 	public List<ItemCarteiraDTO> relatorioCarteiraDeInvestimentos()
 	{
 		return service.relatorioCarteiraDeInvestimentos();

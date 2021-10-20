@@ -28,9 +28,11 @@ import br.com.carteira.dto.TransacaoDetalhadaDTO;
 import br.com.carteira.dto.TransacaoFormDTO;
 import br.com.carteira.service.TransacaoService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/transacoes")
+
 //Documentação Swagger.
 @Api(tags = "Transação")
 public class TransacaoController {
@@ -41,12 +43,14 @@ public class TransacaoController {
 	
 	
 	@GetMapping
+	@ApiOperation("Listar transações")
 	public Page<TransacaoDTO> listar(@PageableDefault(size = 5) Pageable paginacao) 
 	{
 		return service.listar(paginacao);
 	}
 	
 	@PostMapping
+	@ApiOperation("Cadastrar uma nova transação")
 	public ResponseEntity<TransacaoDTO> cadastrar(@RequestBody @Valid TransacaoFormDTO dto,
 			UriComponentsBuilder uriBuilder) 
 	{
@@ -59,6 +63,7 @@ public class TransacaoController {
 	}
 	
 	@PutMapping
+	@ApiOperation("Atualizar uma transação")
 	public ResponseEntity<TransacaoDTO> atualizar(@RequestBody @Valid AtualizacaoTransacaoFormDTO dto) 
 	{
 		TransacaoDTO transacaoDTOAtualizada = service.atualizar(dto);
@@ -66,6 +71,7 @@ public class TransacaoController {
 	}
 	
 	@DeleteMapping("{id}")
+	@ApiOperation("Deletar uma transação")
 	public ResponseEntity<TransacaoDTO> remover(@PathVariable @NotNull Integer id) 
 	{
 		service.remover(id);
@@ -73,6 +79,7 @@ public class TransacaoController {
 	}
 	
 	@GetMapping("{id}")
+	@ApiOperation("Detalhar uma transação")
 	public ResponseEntity<TransacaoDetalhadaDTO> detalhar(@PathVariable @NotNull Integer id) 
 	{
 		TransacaoDetalhadaDTO dto = service.detalhar(id);
