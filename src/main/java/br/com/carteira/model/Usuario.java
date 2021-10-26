@@ -56,9 +56,13 @@ public class Usuario implements UserDetails {
 	
 	public void setSenha()
 	{
-		String strSenha = new String("@"+nome.substring(0, 3).concat(login.substring(0, 3))); 
-		//this.senha = bCryptPasswordEncoder.encode(strSenha);
+		//String strSenha = new String("@"+nome.substring(0, 3).concat(login.substring(0, 3))); 
+		// TODO Implementar lógica de geração de senha.
+		String strSenha = "abc123";
+		
+		// Senha criptografada.
 		this.senha = new BCryptPasswordEncoder().encode(strSenha);
+		System.out.println(senha);
 	}
 
 	public void atualizarInformacoes(String nome, String login)
@@ -102,6 +106,4 @@ public class Usuario implements UserDetails {
 		return true;
 	}
 
-	
-	
 }
