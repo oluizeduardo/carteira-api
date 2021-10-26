@@ -21,8 +21,12 @@ public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository; 
-	private ModelMapper modelMapper = new ModelMapper();
+	
+	@Autowired
+	private ModelMapper modelMapper;
 
+	
+	
 	public Page<UsuarioDTO> listar(Pageable paginacao) 
 	{
 		Page<Usuario> usuarios = usuarioRepository.findAll(paginacao);

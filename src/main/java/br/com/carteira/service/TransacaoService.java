@@ -28,8 +28,10 @@ public class TransacaoService {
 	@Autowired
 	private UsuarioRepository usuarioRepository; 
 	
-	private ModelMapper modelMapper = new ModelMapper();
+	@Autowired
+	private ModelMapper modelMapper;
 
+	
 	public Page<TransacaoDTO> listar(Pageable paginacao) 
 	{
 		Page<Transacao> transacoes = transacaoRepository.findAll(paginacao);
