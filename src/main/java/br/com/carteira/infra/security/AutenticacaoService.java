@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.carteira.dto.LoginFormDTO;
 import br.com.carteira.repository.UsuarioRepository;
+import br.com.carteira.service.TokenService;
 
 @Service
 public class AutenticacaoService implements UserDetailsService {
