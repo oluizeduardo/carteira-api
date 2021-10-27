@@ -42,8 +42,15 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-			.antMatchers(HttpMethod.POST, "/auth").permitAll()// libera página de autenticação..
-			.anyRequest().authenticated()// bloqueia todas outras requisições não autenticadas.
+			// libera página de autenticação.
+			.antMatchers(HttpMethod.POST, "/auth").permitAll()
+			
+			// Somente quem tem perfil de ADMIN pode acessar os recursos de usuários na api.
+			.antMatchers("/usuarios/**").hasRole("ADMIN")
+			
+			// bloqueia todas outras requisições não autenticadas.
+			.anyRequest().authenticated()
+			
 			//.and().formLogin()
 			.and().sessionManagement()
 			.sessionCreationPolicy(SessionCreationPolicy.STATELESS)

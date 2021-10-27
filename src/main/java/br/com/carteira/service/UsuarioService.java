@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import br.com.carteira.dto.AtualizacaoUsuarioFormDTO;
 import br.com.carteira.dto.UsuarioDTO;
 import br.com.carteira.dto.UsuarioFormDTO;
+import br.com.carteira.model.Perfil;
 import br.com.carteira.model.Usuario;
+import br.com.carteira.repository.PerfilRepository;
 import br.com.carteira.repository.UsuarioRepository;
 
 @Service
@@ -21,6 +23,9 @@ public class UsuarioService {
 
 	@Autowired
 	private UsuarioRepository usuarioRepository; 
+	
+	@Autowired
+	private PerfilRepository perfilRepository; 
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -36,7 +41,11 @@ public class UsuarioService {
 	public UsuarioDTO cadastrar(UsuarioFormDTO dto) 
 	{
 		Usuario usuario = modelMapper.map(dto, Usuario.class);
+		
+		Perfil perfil = perfilRepository.getById(dto.getPerfilId());
+		usuario.addPerfil(perfil);
 		usuario.setSenha();
+		
 		usuarioRepository.save(usuario);
 		
 		return modelMapper.map(usuario, UsuarioDTO.class);
