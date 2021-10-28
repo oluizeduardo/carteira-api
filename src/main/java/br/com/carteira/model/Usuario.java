@@ -75,7 +75,6 @@ public class Usuario implements UserDetails {
 		
 		// Senha criptografada.
 		this.senha = new BCryptPasswordEncoder().encode(strSenha);
-		System.out.println(senha);
 	}
 
 	public void atualizarInformacoes(String nome, String login)
