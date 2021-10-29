@@ -36,6 +36,7 @@ public class Transacao {
 	private BigDecimal preco;
 	private int quantidade;
 	private LocalDate data;
+	private BigDecimal imposto;
 	
 	@Enumerated(EnumType.STRING)
 	private TipoTransacao tipo;

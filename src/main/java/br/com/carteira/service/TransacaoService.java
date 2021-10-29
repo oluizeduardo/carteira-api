@@ -31,13 +31,16 @@ public class TransacaoService {
 	
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private CalculadoraDeImpostoServices calculadoraDeImpostoServices;
 
 	
 	public Page<TransacaoDTO> listar(Pageable paginacao, Usuario usuario) 
 	{
-		Page<Transacao> transacoes = transacaoRepository
-				.findAllByUsuario(paginacao, usuario);
-		return transacoes.map(t -> modelMapper.map(t, TransacaoDTO.class));
+		return transacaoRepository
+				.findAllByUsuario(paginacao, usuario)
+				.map(t -> modelMapper.map(t, TransacaoDTO.class));
 	}
 
 	@Transactional
@@ -58,6 +61,7 @@ public class TransacaoService {
 			Transacao transacao = modelMapper.map(dto, Transacao.class);
 			transacao.setId(null);
 			transacao.setUsuario(usuario);
+			transacao.setImposto(calculadoraDeImpostoServices.calcular(transacao));
 			
 			transacaoRepository.save(transacao);
 			

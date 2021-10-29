@@ -3,9 +3,12 @@ package br.com.carteira.service;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import org.springframework.stereotype.Service;
+
 import br.com.carteira.model.TipoTransacao;
 import br.com.carteira.model.Transacao;
 
+@Service
 public class CalculadoraDeImpostoServices {
 
 	public BigDecimal calcular(Transacao transacao) {
