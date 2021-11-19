@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import br.com.carteira.dto.AtualizacaoUsuarioFormDTO;
 import br.com.carteira.dto.UsuarioDTO;
 import br.com.carteira.dto.UsuarioFormDTO;
+import br.com.carteira.infra.EnviadorDeEmail;
 import br.com.carteira.model.Perfil;
 import br.com.carteira.model.Usuario;
 import br.com.carteira.repository.PerfilRepository;
@@ -29,6 +30,9 @@ public class UsuarioService {
 	
 	@Autowired
 	private ModelMapper modelMapper;
+	
+	@Autowired
+	private EnviadorDeEmail enviadorDeEmail;
 
 	
 	
@@ -40,13 +44,37 @@ public class UsuarioService {
 
 	public UsuarioDTO cadastrar(UsuarioFormDTO dto) 
 	{
-		Usuario usuario = modelMapper.map(dto, Usuario.class);
+		/*
+		 * Linha removida pois o modelMapper estava definindo o id
+		 * do perfil como id do usuário, fazendo sobrescrever os usuários 
+		 * já cadastrados no banco.
+		 */
+//		Usuario usuario = modelMapper.map(dto, Usuario.class);
+		
+		// Linha adicionada para resolver o problema acima.
+		Usuario usuario = new Usuario(dto.getNome(), dto.getLogin());
 		
 		Perfil perfil = perfilRepository.getById(dto.getPerfilId());
 		usuario.addPerfil(perfil);
 		usuario.setSenha();
+		usuario.setEmail(dto.getEmail());
 		
-		usuarioRepository.save(usuario);
+		Usuario usuarioCadastrado = usuarioRepository.save(usuario);
+		
+		if (usuarioCadastrado != null) 
+		{
+			String destinatario = usuario.getEmail();
+			String assunto = "Bem vindo à Carteira Digital!";
+
+			// No futuro pesquisar sobre: spring boot thymeleaf email
+			String mensagem = String.format(
+					"Olá, %s!\n\n" 
+				+ "Segue abaixo seus dados de acesso ao sistema Carteira Digital:\n\n"			
+				+ "\tLogin: %s\n" + "\tSenha: %s\n\n" + "Att.\n" + "Equipe de suporte.\n\n",
+							usuario.getNome(), usuario.getLogin(), usuario.getSenha());
+
+			enviadorDeEmail.enviarEmail(destinatario, assunto, mensagem);
+		}
 		
 		return modelMapper.map(usuario, UsuarioDTO.class);
 	}
