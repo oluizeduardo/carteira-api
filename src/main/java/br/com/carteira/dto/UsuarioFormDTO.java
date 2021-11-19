@@ -1,5 +1,6 @@
 package br.com.carteira.dto;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -22,4 +23,8 @@ public class UsuarioFormDTO {
 	
 	@NotNull
 	private Integer perfilId;
+	
+	@NotBlank
+	@Email
+	private String email;
 }

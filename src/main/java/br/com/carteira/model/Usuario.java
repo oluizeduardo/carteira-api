@@ -53,6 +53,9 @@ public class Usuario implements UserDetails {
 	@NonNull
 	private String senha;
 	
+	@NonNull
+	private String email;
+	
 	@ManyToMany
 	@JoinTable(name = "perfis_usuarios", 
 			   joinColumns = @JoinColumn(name = "usuario_id"), 
