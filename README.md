@@ -1,8 +1,10 @@
 # carteira-api
-Project developed during Alura Bootcamp Java.
-
 REST API simulating a digital wallet.
+Project developed during [Alura Bootcamp Java](https://www.alura.com.br/bootcamp/back-end-java/matriculas-abertas). 
 
+<div align="center">
+  <img src="img/logoBootcampJava.jpg">
+</div align="center">
 
 # Technologies used
 * Spring
