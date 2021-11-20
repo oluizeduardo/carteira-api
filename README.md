@@ -12,7 +12,8 @@ REST API simulating a digital wallet.
   - [Spring Validation](https://www.baeldung.com/spring-boot-bean-validation)
   - Spring Boot
   - [Spring Security](https://www.baeldung.com/security-spring)
-* [Json Web Token](https://github.com/jwtk/jjwt)
+*  [Maven](https://maven.apache.org/)
+*  [Json Web Token](https://github.com/jwtk/jjwt)
 * [ModelMapper](http://modelmapper.org/)
 * [Project Lombok](https://projectlombok.org/)
 * Java 11
